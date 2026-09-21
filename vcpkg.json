@@ -1,0 +1,11 @@
+{
+  "name": "kirubamart",
+  "version-string": "1.0.0",
+  "dependencies": [
+    "drogon",
+    "nlohmann-json",
+    "libsodium",
+    "spdlog",
+    "gtest"
+  ]
+}
