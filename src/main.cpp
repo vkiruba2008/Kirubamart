@@ -1,23 +1,31 @@
+#include <cstdlib>
 #include <iostream>
 #include <drogon/drogon.h>
 #include <drogon/orm/DbClient.h>
+
 int main()
 {
-    auto dbClient = drogon::orm::DbClient::newPgClient(
-    "host=localhost port=5432 dbname=kirubamart user=postgres password=kiruba",
-    1
-);
+    const char* connectionString = std::getenv("KIRUBAMART_DB_URL");
 
+    if (!connectionString)
+    {
+        std::cerr << "KIRUBAMART_DB_URL is not set.\n";
+        return 1;
+    }
 
-std::cout << "Database client created successfully!" << std::endl;
+    auto dbClient =
+        drogon::orm::DbClient::newPgClient(connectionString, 1);
+
+    std::cout << "Database client created successfully!\n";
+
     drogon::app().registerHandler(
         "/",
         [](const drogon::HttpRequestPtr&,
            std::function<void(const drogon::HttpResponsePtr&)>&& callback)
         {
-            auto resp = drogon::HttpResponse::newHttpResponse();
-            resp->setBody("Welcome to KirubaMart!");
-            callback(resp);
+            auto response = drogon::HttpResponse::newHttpResponse();
+            response->setBody("Welcome to KirubaMart!");
+            callback(response);
         });
 
     drogon::app().addListener("127.0.0.1", 8080);
