@@ -1,11 +1,12 @@
 {
   "name": "kirubamart",
   "version-string": "1.0.0",
-  "dependencies": [
+ "dependencies": [
     "drogon",
+    "libpq",
     "nlohmann-json",
     "libsodium",
     "spdlog",
     "gtest"
-  ]
+]
 }

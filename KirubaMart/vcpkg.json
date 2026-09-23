@@ -2,7 +2,12 @@
   "name": "kirubamart",
   "version-string": "1.0.0",
   "dependencies": [
-    "drogon",
+    {
+      "name": "drogon",
+      "features": [
+        "postgres"
+      ]
+    },
     "nlohmann-json",
     "libsodium",
     "spdlog",

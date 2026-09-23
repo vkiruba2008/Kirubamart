@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KirubaMart - Cart</title>
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .cart-container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .cart-item img {
+            width: 120px;
+            height: 100px;
+            object-fit: contain;
+        }
+
+        .cart-info {
+            flex: 1;
+        }
+
+        .cart-info h2 {
+            margin-bottom: 8px;
+        }
+
+        .price {
+            color: #e53935;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .remove-btn {
+            background: #e53935;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .total {
+            background: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            text-align: right;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .buy-btn {
+            background: #ffd814;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>KirubaMart</h1>
+
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">🛒 Cart (<span id="cart-count">0</span>)</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>My Cart</h1>
+    <p>Your selected products</p>
+</section>
+
+<div class="cart-container">
+
+    <div id="cart-items"></div>
+
+    <div class="total">
+        Total: ₹<span id="cart-total">0</span>
+        <br>
+        <button class="buy-btn" onclick="proceedToBuy()">
+            Proceed to Buy
+        </button>
+    </div>
+
+</div>
+
+<script>
+
+function loadCart() {
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    let cartItems = document.getElementById("cart-items");
+
+    let total = 0;
+
+    cartItems.innerHTML = "";
+
+    if (cart.length === 0) {
+
+        cartItems.innerHTML = `
+            <div class="cart-item">
+                <h2>Your cart is empty 🛒</h2>
+            </div>
+        `;
+
+    } else {
+
+        cart.forEach((product, index) => {
+
+            total += product.price;
+
+            cartItems.innerHTML += `
+                <div class="cart-item">
+
+                    <img src="${product.image}" alt="${product.name}">
+
+                    <div class="cart-info">
+                        <h2>${product.name}</h2>
+                        <p>${product.description}</p>
+                        <div class="price">₹${product.price}</div>
+                    </div>
+
+                    <button class="remove-btn"
+                        onclick="removeItem(${index})">
+                        Remove
+                    </button>
+
+                </div>
+            `;
+
+        });
+    }
+
+    document.getElementById("cart-total").innerText = total;
+
+    document.getElementById("cart-count").innerText = cart.length;
+}
+
+
+function removeItem(index) {
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.splice(index, 1);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    loadCart();
+}
+
+
+function proceedToBuy() {
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (cart.length === 0) {
+
+        alert("Your cart is empty!");
+
+    } else {
+
+        alert("Order placed successfully! 🎉");
+
+        localStorage.removeItem("cart");
+
+        loadCart();
+    }
+}
+
+
+loadCart();
+
+</script>
+
+</body>
+</html>

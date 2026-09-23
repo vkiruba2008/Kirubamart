@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KirubaMart - Register</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>KirubaMart</h1>
+
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="cart.html">Cart</a>
+    </nav>
+</header>
+
+<section class="hero">
+
+    <h1>Buyer Registration</h1>
+
+    <form onsubmit="registerUser(event)">
+
+        <input type="text" id="name" placeholder="Name" required>
+        <br><br>
+
+        <input type="email" id="email" placeholder="Email" required>
+        <br><br>
+
+        <input type="password" id="password" placeholder="Password" required>
+        <br><br>
+
+        <button type="submit">Register</button>
+
+    </form>
+
+</section>
+
+<script>
+function registerUser(event) {
+    event.preventDefault();
+
+    alert("Registration Successful!");
+
+    window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>
