@@ -1,0 +1,3 @@
+C:/Users/Dell/Desktop/kiruba mart/KirubaMart/build/CMakeFiles/KirubaMart.dir
+C:/Users/Dell/Desktop/kiruba mart/KirubaMart/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Dell/Desktop/kiruba mart/KirubaMart/build/CMakeFiles/ZERO_CHECK.dir

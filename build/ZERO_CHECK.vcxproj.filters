@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Dell\Desktop\kiruba mart\KirubaMart\build\CMakeFiles\71e16448fa34463e49813b2b691be95e\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{03EFCAB0-8687-3667-86E7-E16257B30C94}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

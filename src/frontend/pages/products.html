@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KirubaMart - Products</title>
+
+    <link rel="stylesheet" href="../frontend/css/style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>KirubaMart</h1>
+
+    <div class="search-box">
+        <input type="text" placeholder="🔍Search products...">
+        <button onclick="searchProducts()">Search</button>
+    </div>
+
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="cart.html">🛒 Cart (<span id="cart-count">0</span>)</a>
+    </nav>
+</header>
+
+
+<section class="hero">
+
+    <h1>Our Products</h1>
+    <p>Explore the best products at great prices</p>
+
+</section>
+
+
+<div class="products">
+
+    <!-- LAPTOP -->
+    <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600" 
+             alt="Laptop">
+
+        <h2>Laptop</h2>
+        <p>High Performance Laptop with 16GB RAM</p>
+        <h3>₹45,999</h3>
+
+        <button onclick="addToCart(
+    'Laptop',
+    45999,
+    'High Performance Laptop with 16GB RAM',
+    'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600'
+)">
+    🛒 Add to Cart
+</button>
+    </div>
+
+
+    <!-- SMARTPHONE -->
+    <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600" 
+             alt="Smartphone">
+
+        <h2>Smartphone</h2>
+        <p>Latest 5G Smartphone with 128GB Storage</p>
+        <h3>₹18,999</h3>
+
+        <button onclick="location.href='cart.html'">
+            🛒 Add to Cart
+        </button>
+    </div>
+
+
+    <!-- EARBUDS -->
+    <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=600" 
+             alt="Earbuds">
+
+        <h2>Earbuds</h2>
+        <p>True Wireless Earbuds with Noise Cancellation</p>
+        <h3>₹2,999</h3>
+
+        <button onclick="location.href='cart.html'">
+            🛒 Add to Cart
+        </button>
+    </div>
+
+
+    <!-- HEADPHONES -->
+    <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600" 
+             alt="Headphones">
+
+        <h2>Headphones</h2>
+        <p>Premium Wireless Bluetooth Headphones</p>
+        <h3>₹1,299</h3>
+
+        <button onclick="location.href='cart.html'">
+            🛒 Add to Cart
+        </button>
+    </div>
+
+
+    <!-- SMART WATCH -->
+    <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600" 
+             alt="Smart Watch">
+
+        <h2>Smart Watch</h2>
+        <p>Fitness Tracker with Heart Rate Monitor</p>
+        <h3>₹2,499</h3>
+
+        <button onclick="location.href='cart.html'">
+            🛒 Add to Cart
+        </button>
+    </div>
+
+
+    <!-- BACKPACK -->
+    <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600" 
+             alt="Backpack">
+
+        <h2>Backpack</h2>
+        <p>Stylish and Durable Travel Backpack</p>
+        <h3>₹899</h3>
+<
+        <button onclick="location.href='cart.html'">
+            🛒 Add to Cart
+        </button>
+    </div>
+
+
+    <!-- RUNNING SHOES -->
+    <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600" 
+             alt="Running Shoes">
+
+        <h2>Running Shoes</h2>
+        <p>Comfortable Sports Shoes for Daily Use</p>
+        <h3>₹1,499</h3>
+
+        <button onclick="location.href='cart.html'">
+            🛒 Add to Cart
+        </button>
+    </div>
+
+
+    <!-- T-SHIRT -->
+    <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600" 
+             alt="T-Shirt">
+
+        <h2>T-Shirt</h2>
+        <p>Comfortable Cotton Round Neck T-Shirt</p>
+        <h3>₹499</h3>
+
+        <button onclick="location.href='cart.html'">
+            🛒 Add to Cart
+        </button>
+    </div>
+
+
+    <!-- WATER BOTTLE -->
+    <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600" 
+             alt="Water Bottle">
+
+        <h2>Water Bottle</h2>
+        <p>Stainless Steel Water Bottle 500ml</p>
+        <h3>₹399</h3>
+
+        <button onclick="location.href='cart.html'">
+            🛒 Add to Cart
+        </button>
+    </div>
+
+</div>
+<script>
+function searchProducts() {
+    let search = document.querySelector(".search-box input").value.toLowerCase();
+    let products = document.querySelectorAll(".product-card");
+
+    products.forEach(product => {
+        let name = product.querySelector("h2").innerText.toLowerCase();
+
+        if (name.includes(search)) {
+            product.style.display = "block";
+        } else {
+            product.style.display = "none";
+        }
+    });
+}
+</script>
+<script>
+function addToCart(name, price, description, image) {
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.push({
+        name: name,
+        price: price,
+        description: description,
+        image: image
+    });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert(name + " added to cart!");
+
+    window.location.href = "cart.html";
+}
+</script>
+</body>
+</html>
